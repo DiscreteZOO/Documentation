@@ -1,0 +1,53 @@
+% !BIB TS-program = bibtex
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{DiscreteZOO documentation}
+\author{Katja Ber\v{c}i\v{c} \and  Jano\v{s} Vidali}
+\maketitle
+
+\section{Citable unique identifiers}
+
+A human-friendly shortened identifier may be obtained
+by taking the first $12$ characters (hexadecimal digits) of the GUID,
+splitting them into groups of $4$ characters by inserting two hyphens,
+and prepending a letter \texttt{Z}.
+Optionally, this letter may be followed by one or more letters
+denoting the type of the object.
+Finally, the name of the algorithm used to produce the identifier
+may be appended after a colon at the end.
+For example, we can obtain two different identifiers for the Petersen graph
+from two different canonical representations:
+\begin{equation}
+\texttt{Zc74c-6028-a25a:bliss} \quad \text{and} \quad \texttt{ZGca5e-bcae-4138}.
+\end{equation}
+The first identifier specifies that it has been derived
+from the canonical representation of the graph
+computed using Bliss~\cite{Bliss}.
+The \texttt{G} letter in the second identifier
+denotes that it represents a graph;
+however, the algorithm used to obtain it has not been specified.
+
+By shortening the hash to $12$ characters out of the original $64$,
+the number of such shortened identifiers drops down considerably,
+yet it still remains at $2^{48} \approx 2.8 \cdot 10^{14}$.
+Due to the birthday paradox, a collision
+(two objects with the same identifier)
+is expected to occur with probability $0.5$
+when the number of identifier in the database grows to about $20$ million,
+which could conceivably happen in the not so distant future.
+However, we do not see it as a problem:
+if this happens, the affected identifier may be extended
+with additional characters from the hash for disambiguation.
+Note that such an approach
+is also taken by the Git versioning system~\cite{git}:
+although the objects are identified by $40$-character hashes,
+they are usually referred to by simply taking the first $7$ characters.
+
+\bibliographystyle{plain}
+\bibliography{docs}
+\end{document}
