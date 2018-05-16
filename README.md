@@ -1,0 +1,2 @@
+# DiscreteZOO-docs
+Project documentation
