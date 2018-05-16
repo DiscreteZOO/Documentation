@@ -10,6 +10,47 @@
 \author{Katja Ber\v{c}i\v{c} \and  Jano\v{s} Vidali}
 \maketitle
 
+\section{Databases}
+
+The core database has a journalling system
+that keeps track of the tables, rows and columns changed.
+The reference database is stored on GitHub as a collection of JSON files.
+This form is intended solely
+for the ease of adding information to the database
+and exporting the database into usable forms.
+
+Each object and computed property has a corresponding list of references.
+The first reference is the reference
+that introduced the cell into the database.
+Any other references are reserved for potential changes to the cells.
+
+More precisely, each cell has a shadow cell with a list of changes
+(commits in the versioning system)
+that affected its value,
+starting with the change that added the cell to the database
+and followed by any changes of the value.
+Furthermore, each change has a link to a reference (such as a paper).
+
+\subsection{SageMath package}
+
+The SageMath package works with a local SQLite database.
+The user may also choose to use a PostgreSQL database,
+and support for other database systems may be added easily.
+The database is organised into tables representing object types,
+where each column represents a single-valued property.
+Multi-valued properties have their own tables
+with references to the objects they represent.
+The local database also has an attached journal,
+which, for each change made, keeps track of the following:
+\begin{itemize}
+\item table changed,
+\item ID of row (object or value of a multi-valued property) added or changed,
+\item column (usually property) added or changed.
+\end{itemize}
+
+This makes it possible to export the changes made
+for later inclusion in the core database.
+
 \section{Citable unique identifiers}
 
 A human-friendly shortened identifier may be obtained
