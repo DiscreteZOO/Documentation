@@ -12,7 +12,7 @@
 
 \section{Databases}
 
-The core database has a journalling system
+The core database has a journaling system
 that keeps track of the tables, rows and columns changed.
 The reference database is stored on GitHub as a collection of JSON files.
 This form is intended solely
@@ -56,15 +56,19 @@ for later inclusion in the core database.
 A human-friendly shortened identifier may be obtained
 by taking the first $12$ characters (hexadecimal digits) of the GUID,
 splitting them into groups of $4$ characters by inserting two hyphens,
-and prepending a letter \texttt{Z}.
-Optionally, this letter may be followed by one or more letters
+prepending the letter \texttt{Z},
+and adding a plus sign and a checksum hexadecimal digit.
+The checksum is obtained by taking the XOR
+of the hexadecimal digits included in the citable unique identifier
+(i.e., not the entire GUID).
+Optionally, the initial \texttt{Z} may be followed by one or more letters
 denoting the type of the object.
 Finally, the name of the algorithm used to produce the identifier
 may be appended after a colon at the end.
 For example, we can obtain two different identifiers for the Petersen graph
 from two different canonical representations:
 \begin{equation}
-\texttt{Zc74c-6028-a25a:bliss} \quad \text{and} \quad \texttt{ZGca5e-bcae-4138}.
+\texttt{Zc74c-6028-a25a+8:bliss} \quad \text{and} \quad \texttt{ZGca5e-bcae-4138+0}.
 \end{equation}
 The first identifier specifies that it has been derived
 from the canonical representation of the graph
